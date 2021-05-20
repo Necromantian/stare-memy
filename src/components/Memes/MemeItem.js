@@ -17,8 +17,10 @@ const MemeItem = (props) => {
       <LikeDislike2
         date={props.date}
         key={props.id}
+        id={props.id}
         upvotes={props.upvotes}
         downvotes={props.downvotes}
+        updateMemeVotes={props.updateMemeVotes}
       />
     </Card>
   );

@@ -19,6 +19,21 @@ const App = () => {
     });
   };
 
+  const updateMemeVotes = (memeId, voteType) => {
+    const updatedMemes = memes.map(meme => {
+      if (meme.id == memeId) {
+        if (voteType === 'upvote') {
+          meme.upvotes = meme.upvotes + 1
+        } else {
+          meme.downvotes = meme.downvotes + 1
+        }
+      }
+      return meme;
+    });
+
+    setMemes(updatedMemes);
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -45,10 +60,10 @@ const App = () => {
 
         <Switch>
           <Route exact path="/">
-            <Memes items={memes} />
+            <Memes items={memes} updateMemeVotes={updateMemeVotes} />
           </Route>
           <Route exact path="/regular">
-            <Regular items={memes} />
+            <Regular items={memes} updateMemeVotes={updateMemeVotes} />
           </Route>
           <Route exact path="/new">
             <NewMeme onAddMeme={addMemeHandler} />
